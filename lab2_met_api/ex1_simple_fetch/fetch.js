@@ -4,7 +4,7 @@ const objectBaseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1/
 fetchMuseumData(searchUrl);
 
 let metData;
-let queryObjects = [];
+let myArray = [];
 
 // fetch a query
 function fetchMuseumData(url) {
@@ -12,14 +12,16 @@ function fetchMuseumData(url) {
     .fetch(url)
     .then(data => data.json())
     .then(data => {
-      // console.log(data);
+      console.log(data);
       fetchObjects(data);
     });
 }
 
 // from the response, fetch objects
 function fetchObjects(data){
+
   let objectIDs = data.objectIDs;
+  console.log("fetching: " + objectIDs.length + " objects");
   objectIDs.forEach(function(n) {
     // console.log(objectBaseUrl + n);
     let objUrl = objectBaseUrl + n;
@@ -39,9 +41,10 @@ function addObject(objectData){
     var currentTitle = objectData.title;
     var currentDate = objectData.objectBeginDate;
     var imgUrl = objectData.primaryImage;
-    queryObjects[currentID] = {};
-    queryObjects[currentID]["title"] = currentTitle;
-    queryObjects[currentID]["date"] = currentDate;
-    queryObjects[currentID]["image"] = imgUrl;
-    console.log(queryObjects[currentID]);
+    var index = myArray.length;
+    myArray[index] = {};
+    myArray[index]["title"] = currentTitle;
+    myArray[index]["date"] = currentDate;
+    myArray[index]["image"] = imgUrl;
+    console.log(myArray[index]);
 }
