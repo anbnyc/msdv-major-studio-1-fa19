@@ -12,7 +12,7 @@ function fetchMuseumData(url) {
     .fetch(url)
     .then(data => data.json())
     .then(data => {
-      console.log(data);
+      console.log('fetchMuseumData', data);
       fetchObjects(data);
     });
 }
@@ -46,5 +46,13 @@ function addObject(objectData){
     myArray[index]["title"] = currentTitle;
     myArray[index]["date"] = currentDate;
     myArray[index]["image"] = imgUrl;
-    console.log(myArray[index]);
+
+    /*
+    myArray.push({
+      title: objectData.title,
+      date: objectData.objectBeginDate,
+      image: objectData.primaryImage
+    })
+     */
+    console.log('object at index', index, myArray[index]);
 }
